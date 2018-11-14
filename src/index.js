@@ -1,7 +1,9 @@
-import $ from 'jquery';
 import 'bootstrap';
 import './index.scss';
+import navbar from './components/Navbar/navbar';
 
-$('#click-btn').on('click', () => {
-  $('#output').append('sup');
-});
+const initApp = () => {
+  navbar();
+};
+
+initApp();
