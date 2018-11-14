@@ -1,9 +1,16 @@
+import firebase from 'firebase/app';
 import 'bootstrap';
+
+import apiKeys from '../db/apiKeys.json';
+import createNavbar from './components/Navbar/navbar';
+import loginButton from './components/Auth/auth';
+
 import './index.scss';
-import navbar from './components/Navbar/navbar';
 
 const initApp = () => {
-  navbar();
+  firebase.initializeApp(apiKeys.firebaseKeys);
+  createNavbar();
+  loginButton();
 };
 
 initApp();
