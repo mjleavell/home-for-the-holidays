@@ -1,0 +1,34 @@
+{
+  "hf1": {
+    "holidayId": "holiday1",
+    "friendId": "friend2"
+  },
+  "hf2": {
+    "holidayId": "holiday1",
+    "friendId": "friend3"
+  },
+  "hf3": {
+    "holidayId": "holiday1",
+    "friendId": "friend4"
+  },
+  "hf4": {
+    "holidayId": "holiday2",
+    "friendId": "friend6"
+  },
+  "hf5": {
+    "holidayId": "holiday2",
+    "friendId": "friend7"
+  },
+  "hf6": {
+    "holidayId": "holiday2",
+    "friendId": "friend8"
+  },
+  "hf7": {
+    "holidayId": "holiday3",
+    "friendId": "friend1"
+  },
+  "hf8": {
+    "holidayId": "holiday3",
+    "friendId": "friend5"
+  }
+}

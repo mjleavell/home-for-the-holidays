@@ -1,0 +1,74 @@
+{
+  "friend1": {
+    "name": "Callan M.",
+    "address": "1 Main Street, Nashville, TN 37209",
+    "phoneNumber": "1112223333",
+    "email": "callan@yomamma.com",
+    "relationship": "sister from anotha mother",
+    "isAvoiding": true,
+    "uid": "z3gQwTHCUjSXMAdoUA8Wm34WXf83"
+  },
+  "friend2": {
+    "name": "Lee",
+    "address": "168 Avon Street, Nashville, TN 37204",
+    "phoneNumber": "6158493863",
+    "email": "lee@princess.com",
+    "relationship": "sister",
+    "isAvoiding": false,
+    "uid": "7wtYOqGGEtS7dx6VAby70Efklkk2"
+  },
+  "friend3": {
+    "name": "Neely",
+    "address": "4415 Tall Trees Drive, Memphis, TN 37212",
+    "phoneNumber": "2148964167",
+    "email": "neely@twinning.com",
+    "relationship": "twin sister",
+    "isAvoiding": false,
+    "uid": "7wtYOqGGEtS7dx6VAby70Efklkk2"
+  },
+  "friend4": {
+    "name": "Charlotte",
+    "address": "68 5th Ave, New York, NY 10015",
+    "phoneNumber": "9012337589",
+    "email": "caroline@gmail.com",
+    "relationship": "friend",
+    "isAvoiding": true,
+    "uid": "7wtYOqGGEtS7dx6VAby70Efklkk2"
+  },
+  "friend5": {
+    "name": "Kyle",
+    "address": "245 W 52nd St, New York, NY 10019",
+    "phoneNumber": "2136789302",
+    "email": "kyle@me.com",
+    "relationship": "friend",
+    "isAvoiding": false,
+    "uid": "z3gQwTHCUjSXMAdoUA8Wm34WXf83"
+  },
+  "friend6": {
+    "name": "John",
+    "address": "234 Idaho Ave, Nashville, TN 37203",
+    "phoneNumber": "6157892342",
+    "email": "johnny@gmail.com",
+    "relationship": "friend",
+    "isAvoiding": false,
+    "uid": "7wtYOqGGEtS7dx6VAby70Efklkk2"
+  },
+  "friend7": {
+    "name": "Nate",
+    "address": "455 Madison Ave, New York, NY 10022",
+    "phoneNumber": "2129665194",
+    "email": "nate@gmail.com",
+    "relationship": "friend",
+    "isAvoiding": false,
+    "uid": "7wtYOqGGEtS7dx6VAby70Efklkk2"
+  },
+  "friend8": {
+    "name": "George",
+    "address": "4415 Shady Grove Rd, Memphis, TN 38119",
+    "phoneNumber": "9016829822",
+    "email": "george@george.com",
+    "relationship": "father",
+    "isAvoiding": false,
+    "uid": "7wtYOqGGEtS7dx6VAby70Efklkk2"
+  }
+}
