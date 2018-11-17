@@ -1,0 +1,26 @@
+{
+	"holiday1": {
+		"name": "Thanksgiving",
+		"Date": "11/22/2018",
+		"imageUrl": "https://www.sonomamag.com/biteclub/wp-content/uploads/2016/11/turkeydinner-1024x692.jpg",
+		"location": "768 5th Ave, New York, NY 10019",
+		"startTime": "1pm",
+		"uid": "7wtYOqGGEtS7dx6VAby70Efklkk2"
+	},
+	"holiday2": {
+		"name": "Christmas",
+		"Date": "12/25/2018",
+		"imageUrl": "https://media.timeout.com/images/105297673/630/472/image.jpg",
+		"location": "768 5th Ave, New York, NY 10019",
+		"startTime": "9am",
+		"uid": "7wtYOqGGEtS7dx6VAby70Efklkk2"
+	},
+	"holiday3": {
+		"name": "Mardi Gras",
+		"Date": "3/5/2019",
+		"imageUrl": "http://travel.alot.com/assets/common/themes/u6060_602x312.jpg",
+		"location": "New Orleans, LA",
+		"startTime": "9am",
+		"uid": "z3gQwTHCUjSXMAdoUA8Wm34WXf83"
+	}
+}
