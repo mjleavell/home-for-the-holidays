@@ -1,10 +1,10 @@
 {
   "friend1": {
-    "name": "Callan M.",
+    "name": "Henry",
     "address": "1 Main Street, Nashville, TN 37209",
-    "phoneNumber": "1112223333",
-    "email": "callan@yomamma.com",
-    "relationship": "sister from anotha mother",
+    "phoneNumber": "6157876546",
+    "email": "henry@lab.com",
+    "relationship": "dog",
     "isAvoiding": true,
     "uid": "z3gQwTHCUjSXMAdoUA8Wm34WXf83"
   },
@@ -42,7 +42,7 @@
     "email": "kyle@me.com",
     "relationship": "friend",
     "isAvoiding": false,
-    "uid": "z3gQwTHCUjSXMAdoUA8Wm34WXf83"
+    "uid": "7wtYOqGGEtS7dx6VAby70Efklkk2"
   },
   "friend6": {
     "name": "John",
