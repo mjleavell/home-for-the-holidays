@@ -3,6 +3,33 @@ import axios from 'axios';
 import apiKeys from '../../../db/apiKeys.json';
 import authHelpers from '../../helpers/authHelpers';
 
+const printSingleFriend = (friend) => {
+  const friendString = `
+  <div>
+    <h2>${friend.name}</h2>
+    <h3>${friend.relationship}</h3>
+    <p>${friend.address}</p>
+    <p>${friend.email}</p>
+    <p>${friend.phoneNumber}</p>
+    <button class="btn btn-danger delete-btn">Delete friend</button>
+  </div>`;
+  $('#single-container').html(friendString);
+};
+
+const getSingleFriend = (e) => {
+  // need firebase id
+  const friendId = e.target.dataset.dropdownId;
+  axios.get(`${apiKeys.firebaseKeys.databaseURL}/friends/${friendId}.json`)
+    .then((result) => {
+      const singleFriend = result.data;
+      singleFriend.id = friendId;
+      printSingleFriend(singleFriend);
+    })
+    .catch((error) => {
+      console.error('error in getting single friend', error);
+    });
+};
+
 const buildDropdown = (friendsArray) => {
   let dropdown = `
   <div class="dropdown">
@@ -11,7 +38,7 @@ const buildDropdown = (friendsArray) => {
     </button>
     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">`;
   friendsArray.forEach((friend) => {
-    dropdown += `<div class="dropdown-item">${friend.name}</div>`;
+    dropdown += `<div class="dropdown-item" data-dropdown-id=${friend.id}>${friend.name}</div>`;
   });
   dropdown += '</div></div>';
   $('#dropdown-container').html(dropdown);
@@ -32,8 +59,17 @@ const friendsPage = () => {
       buildDropdown(friendsArray);
     })
     .catch((error) => {
-      console.error(error);
+      console.error('error on friendsPage', error);
     });
 };
 
-export default friendsPage;
+const bindEvents = () => {
+  $('body').on('click', '.dropdown-item', getSingleFriend);
+};
+
+const initializeFriendsPage = () => {
+  friendsPage();
+  bindEvents();
+};
+
+export default initializeFriendsPage;
