@@ -9,8 +9,7 @@ const loginButton = () => {
   const domString = `
     <button id="google-auth" class="btn btn-outline-light">
       <img src="${googleImage}"></img>
-    </button>
-  `;
+    </button>`;
   $('#auth').html(domString);
   $('#google-auth').on('click', () => {
     const provider = new firebase.auth.GoogleAuthProvider();
