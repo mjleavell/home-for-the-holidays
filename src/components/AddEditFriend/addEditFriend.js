@@ -34,6 +34,9 @@ const gettingFriendFromForm = () => {
     phoneNumber: $('#form-friend-phone').val(),
     relationship: $('#form-friend-relationship').val(),
     isAvoiding: false,
-    uid: authHelpers.getCurrentUid()
+    uid: authHelpers.getCurrentUid(),
   };
+  console.log(friend);
 };
+
+export default { formBuilder, gettingFriendFromForm };

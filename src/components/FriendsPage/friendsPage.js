@@ -2,6 +2,7 @@ import $ from 'jquery';
 import axios from 'axios';
 import apiKeys from '../../../db/apiKeys.json';
 import authHelpers from '../../helpers/authHelpers';
+import friendsData from '../../helpers/Data/friendsData';
 
 const printSingleFriend = (friend) => {
   const friendString = `
@@ -19,14 +20,12 @@ const printSingleFriend = (friend) => {
 const getSingleFriend = (e) => {
   // need firebase id
   const friendId = e.target.dataset.dropdownId;
-  axios.get(`${apiKeys.firebaseKeys.databaseURL}/friends/${friendId}.json`)
-    .then((result) => {
-      const singleFriend = result.data;
-      singleFriend.id = friendId;
+  friendsData.getSingleFriend(friendId)
+    .then((singleFriend) => {
       printSingleFriend(singleFriend);
     })
     .catch((error) => {
-      console.error('error in getting single friend', error);
+      console.error('error in getting one friend', error);
     });
 };
 
