@@ -12,6 +12,7 @@ const checkLoginStatus = (initializeFriendsPage) => {
       $('#navbar-button-holidays').show();
       $('#navbar-button-friends').show();
       $('#navbar-button-logout').show();
+      $('#add-edit-friend').hide();
       initializeFriendsPage();
     } else {
       $('#friends').hide();
@@ -21,6 +22,7 @@ const checkLoginStatus = (initializeFriendsPage) => {
       $('#navbar-button-holidays').hide();
       $('#navbar-button-friends').hide();
       $('#navbar-button-logout').hide();
+      $('#add-edit-friend').hide();
     }
   });
 };
