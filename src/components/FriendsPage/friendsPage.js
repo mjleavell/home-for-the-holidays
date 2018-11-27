@@ -1,8 +1,18 @@
 import $ from 'jquery';
 import authHelpers from '../../helpers/authHelpers';
 import friendsData from '../../helpers/Data/friendsData';
+import holidayFriendsData from '../../helpers/Data/holidayFriendsData';
+import holidaysData from '../../helpers/Data/holidaysData';
 
-const printSingleFriend = (friend) => {
+const holidayStringBuilder = (holidays) => {
+  let holidayString = '<h3>Holidays:</h3>';
+  holidays.forEach((holiday) => {
+    holidayString += `<h5>${holiday.name} ${holiday.Date}</h5>`;
+  });
+  return holidayString;
+};
+
+const printSingleFriend = (friend, holidays) => {
   const friendString = `
   <div>
     <h2>${friend.name}</h2>
@@ -12,6 +22,7 @@ const printSingleFriend = (friend) => {
     <p>${friend.phoneNumber}</p>
     <button class="btn btn-danger delete-btn" data-delete-id=${friend.id}>Delete friend</button>
     <button class="btn btn-secondary edit-btn" data-edit-id=${friend.id}>Edit friend</button>
+    <div class="holiday-container">${holidayStringBuilder(holidays)}</div>
   </div>`;
   $('#single-container').html(friendString);
 };
@@ -19,10 +30,19 @@ const printSingleFriend = (friend) => {
 const getSingleFriend = (e) => {
   // need firebase id
   const friendId = e.target.dataset.dropdownId;
-  friendsData.getSingleFriend(friendId)
-    .then((singleFriend) => {
-      printSingleFriend(singleFriend);
-    })
+  const uid = authHelpers.getCurrentUid();
+  friendsData.getSingleFriend(friendId).then((singleFriend) => {
+    // below functions are how we get the holidays to display on friend
+    holidayFriendsData.getHolidayIdsForFriend(friendId).then((holidayIds) => {
+      // console.log('holidayIds', holidayIds);
+      // holidayIds is an array of all the holidays that the friend is attending
+      holidaysData.getHolidaysByArrayOfIds(uid, holidayIds).then((holidays) => {
+        printSingleFriend(singleFriend, holidays);
+      });
+    });
+    // const holidayIds = ['holiday1'];
+    // const holidays = ['a', 'b', 'c'];
+  })
     .catch((error) => {
       console.error('error in getting one friend', error);
     });
