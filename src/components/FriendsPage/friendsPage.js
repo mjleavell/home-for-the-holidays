@@ -16,15 +16,23 @@ const printSingleFriend = (friend, holidays) => {
   const friendString = `
   <div>
     <h2>${friend.name}</h2>
+    <button class="btn btn-danger delete-btn" data-delete-id=${friend.id}>Delete friend</button>
+    <button class="btn btn-secondary edit-btn" data-edit-id=${friend.id}>Edit friend</button>
     <h3>${friend.relationship}</h3>
     <p>${friend.address}</p>
     <p>${friend.email}</p>
     <p>${friend.phoneNumber}</p>
-    <button class="btn btn-danger delete-btn" data-delete-id=${friend.id}>Delete friend</button>
-    <button class="btn btn-secondary edit-btn" data-edit-id=${friend.id}>Edit friend</button>
+    <div class="form-check form-check-inline mb-1">
+      <label class="form-check-label" for="inlineCheckbox1">Am I avoiding this person?</label>
+      <input class="form-check-input is-avoiding-checkbox" type="checkbox" id="${friend.id}">
+    </div>
     <div class="holiday-container">${holidayStringBuilder(holidays)}</div>
   </div>`;
   $('#single-container').html(friendString);
+  if (friend.isAvoiding) {
+    // if friend.isAvoiding === true, then checkbox is checked
+    $('.is-avoiding-checkbox').attr('checked', true);
+  }
 };
 
 const getSingleFriend = (e) => {
@@ -90,9 +98,23 @@ const deleteFriend = (e) => {
     });
 };
 
+const updateIsAvoiding = (e) => {
+  const friendId = e.target.id;
+  const isAvoiding = e.target.checked;
+  friendsData.updatedIsAvoiding(friendId, isAvoiding)
+    .then(() => {
+      // dont really need to add friendsPage() bc page doesnt need to reload
+      friendsPage();
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+};
+
 const bindEvents = () => {
   $('body').on('click', '.get-single', getSingleFriend);
   $('body').on('click', '.delete-btn', deleteFriend);
+  $('body').on('change', '.is-avoiding-checkbox', updateIsAvoiding);
 };
 
 const initializeFriendsPage = () => {
