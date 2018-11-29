@@ -11,11 +11,12 @@ import friendsPage from './components/FriendsPage/friendsPage';
 import showAddForm from './components/AddEditFriend/addEditFriend';
 
 import './index.scss';
+import holidaysPage from './components/HolidaysPage/holidaysPage';
 
 const initApp = () => {
   firebase.initializeApp(apiKeys.firebaseKeys);
   createNavbar();
-  authHelpers.checkLoginStatus(friendsPage);
+  authHelpers.checkLoginStatus(friendsPage, holidaysPage);
   loginButton();
   $('#show-friend-form').on('click', showAddForm);
 };
