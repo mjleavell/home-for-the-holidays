@@ -6,6 +6,8 @@ import apiKeys from '../../../db/apiKeys.json';
 const firebaseUrl = apiKeys.firebaseKeys.databaseURL;
 
 const getAllFriends = uid => new Promise((resolve, reject) => {
+  // the orderBy=firebase key and the equalTo value equals whatever youre passing in
+  // if you have order by, you need to add indexOn rule in firebase
   axios.get(`${firebaseUrl}/friends.json?orderBy="uid"&equalTo="${uid}"`)
     .then((results) => {
       const friendsObject = results.data;

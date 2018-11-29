@@ -7,7 +7,7 @@ import holidaysData from '../../helpers/Data/holidaysData';
 const holidayStringBuilder = (holidays) => {
   let holidayString = '<h3>Holidays:</h3>';
   holidays.forEach((holiday) => {
-    holidayString += `<h5>${holiday.name} ${holiday.Date}</h5>`;
+    holidayString += `<h5>${holiday.name} ${holiday.date}</h5>`;
   });
   return holidayString;
 };
@@ -88,7 +88,7 @@ const friendsPage = () => {
 const deleteFriend = (e) => {
   const idToDelete = e.target.dataset.deleteId;
   friendsData.deleteFriend(idToDelete)
-  // dont need to pass in result because if delete is successful it, value = null
+    // dont need to pass in result because if delete is successful it, value = null
     .then(() => {
       friendsPage();
       $('#single-container').html('');
