@@ -1,3 +1,20 @@
 .holiday-btn {
-  margin: 5px 15px 5px 15px;
+  margin: 20px 15px 10px 15px;
+}
+
+#holidays-display {
+  margin: 0px;
+  display: flex;
+  justify-content: center;
+  .holiday row {
+    margin: 25px 0px 0px 0px;
+  }
+  .holiday .holiday-text {
+    margin: auto 0 auto 0;
+  }
+  .btn {
+    display: flex;
+    justify-content: center;
+    margin: 3px;
+  }
 }
