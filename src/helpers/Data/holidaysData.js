@@ -21,6 +21,18 @@ const getAllHolidays = uid => new Promise((resolve, reject) => {
     });
 });
 
+const getSingleHoliday = holidayId => new Promise((resolve, reject) => {
+  axios.get(`${baseUrl}/holidays/${holidayId}.json`)
+    .then((result) => {
+      const singleHoliday = result.data;
+      singleHoliday.id = holidayId;
+      resolve(singleHoliday);
+    })
+    .catch((err) => {
+      reject(err);
+    });
+});
+
 const getHolidaysByArrayOfIds = (uid, holidayIdsArray) => new Promise((resolve, reject) => {
   // line 8 will return all the holidays that belong to my user
   axios.get(`${baseUrl}/holidays.json?orderBy="uid"&equalTo="${uid}"`)
@@ -48,4 +60,5 @@ const getHolidaysByArrayOfIds = (uid, holidayIdsArray) => new Promise((resolve, 
 export default {
   getHolidaysByArrayOfIds,
   getAllHolidays,
+  getSingleHoliday,
 };

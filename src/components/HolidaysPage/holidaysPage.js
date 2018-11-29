@@ -3,11 +3,12 @@ import authHelpers from '../../helpers/authHelpers';
 import holidaysData from '../../helpers/Data/holidaysData';
 import './holidaysPage.scss';
 
-// Holidays should show up as buttons
-// Buttons should have click events attached
 const getSingleHoliday = (e) => {
   const holidayId = e.target.dataset.holidayBtnId;
   console.log(holidayId);
+  holidaysData.getSingleHoliday(holidayId).then((singleHoliday) => {
+    console.log(singleHoliday);
+  });
 };
 
 const getHolidayButtons = (holidaysArray) => {
