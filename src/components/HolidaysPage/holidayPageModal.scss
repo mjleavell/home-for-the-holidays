@@ -1,0 +1,11 @@
+.modal-body {
+  margin-left: 3rem;
+  .modal-name {
+    display: flex;
+    flex-flow: column wrap;
+    padding: 0px;
+    label {
+      text-align: left;
+    }
+  }
+}
