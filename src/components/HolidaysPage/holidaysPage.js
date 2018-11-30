@@ -5,15 +5,24 @@ import './holidaysPage.scss';
 import holidayFriendsData from '../../helpers/Data/holidayFriendsData';
 import friendsData from '../../helpers/Data/friendsData';
 
-const printSingleHoliday = (singleHoliday) => {
-  const holidayString = `
+const printSingleHoliday = (singleHoliday, friendsArray) => {
+  let holidayString = '';
+  holidayString += `
   <div class="row holiday">
     <div class="col-md-5 holiday-text">
-      <h3>${singleHoliday.name}</h3>
+      <h3 class="holiday-name">${singleHoliday.name}</h3>
       <p><strong>Date:</strong> ${singleHoliday.date}</p>
       <p><strong>Location:</strong> ${singleHoliday.location}</p>
       <p><strong>Time:</strong> ${singleHoliday.startTime}</p>
-      <div id="holidays-guests" class="text-left"></div>
+      <div id="holidays-guests" class="text-left">
+        <h4 class="holiday-guest-title">Invited Guests</h4>
+        <ul>`;
+  friendsArray.forEach((friend) => {
+    holidayString += `<li class="friend-name" style="color:${friend.isAvoiding === true ? 'red' : 'black'}">${friend.name}</li>`;
+  });
+  holidayString += `
+        </ul>
+      </div>
       <div class="row card-body">
         <button class="btn btn-success single-holiday-btn" data-holiday-edit-btn=${singleHoliday.id}>Edit Holiday</button>
         <button class="btn btn-danger single-holiday-btn" data-holiday-delete-btn=${singleHoliday.id}>Delete Holiday</button>
@@ -27,17 +36,6 @@ const printSingleHoliday = (singleHoliday) => {
   $('#holidays-info').html(holidayString);
 };
 
-const printHolidayGuests = (friendsArray) => {
-  let domString = '';
-  domString += '<h4 class="holiday-guest-title">Invited Guests</h4>';
-  domString += '<ul class="holiday-guest-names">';
-  friendsArray.forEach((friend) => {
-    domString += `<li>${friend.name}</li>`;
-  });
-  domString += '</ul>';
-  $('#holidays-guests').html(domString);
-};
-
 const getSingleHoliday = (e) => {
   const holidayId = e.target.dataset.holidayBtnId;
   const uid = authHelpers.getCurrentUid();
@@ -45,8 +43,8 @@ const getSingleHoliday = (e) => {
   holidaysData.getSingleHoliday(holidayId).then((singleHoliday) => {
     holidayFriendsData.getFriendIdsForHoliday(holidayId).then((friendIdsArray) => {
       friendsData.getFriendsByArrayOfIds(uid, friendIdsArray).then((friendsArray) => {
-        printSingleHoliday(singleHoliday);
-        printHolidayGuests(friendsArray);
+        console.log(friendsArray);
+        printSingleHoliday(singleHoliday, friendsArray);
       });
     });
   });

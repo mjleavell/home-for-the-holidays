@@ -1,3 +1,7 @@
+h3 {
+  margin-top: 8px;
+}
+
 #holidays-btns {
   margin-bottom: 20px;
   .holiday-btn {
@@ -17,10 +21,13 @@
   }
 }
 
-.single-holiday-btn {
-  display: flex;
-  justify-content: center;
-  margin: 3px;
+.card-body{
+  padding: 2px;
+  .single-holiday-btn {
+    display: flex;
+    justify-content: center;
+    margin: 3px;
+  }
 }
 
 #holidays-guests {
