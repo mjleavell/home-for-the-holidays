@@ -1,9 +1,12 @@
-.holiday-btn {
-  margin: 20px 15px 10px 15px;
+#holidays-btns {
+  margin-bottom: 20px;
+  .holiday-btn {
+    margin: 20px 15px 10px 15px;
+  }
 }
 
-#holidays-display {
-  margin: 0px;
+#holidays-info .container {
+  margin: 10px 0px 0px 0px;
   display: flex;
   justify-content: center;
   .holiday row {
@@ -12,9 +15,22 @@
   .holiday .holiday-text {
     margin: auto 0 auto 0;
   }
-  .btn {
-    display: flex;
-    justify-content: center;
-    margin: 3px;
+}
+
+.single-holiday-btn {
+  display: flex;
+  justify-content: center;
+  margin: 3px;
+}
+
+#holidays-guests {
+  .holiday-guest-names {
+    // display: flex;
+    // flex-flow: column wrap;
+    // justify-content: center;
+    li {
+      padding: 3px;
+      margin: 0;
+    }
   }
 }

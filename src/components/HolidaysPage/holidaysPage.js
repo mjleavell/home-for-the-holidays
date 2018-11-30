@@ -2,14 +2,9 @@ import $ from 'jquery';
 import authHelpers from '../../helpers/authHelpers';
 import holidaysData from '../../helpers/Data/holidaysData';
 import './holidaysPage.scss';
+import holidayFriendsData from '../../helpers/Data/holidayFriendsData';
+import friendsData from '../../helpers/Data/friendsData';
 
-// date, holiday, picture, location, time, list of guests. buttons for edit, delete, and add people
-// "name": "Thanksgiving",
-// "date": "11/22/2018",
-// "imageUrl": "https://www.sonomamag.com/biteclub/wp-content/uploads/2016/11/turkeydinner-1024x692.jpg",
-// "location": "768 5th Ave, New York, NY 10019",
-// "startTime": "1pm",
-// "uid": "7wtYOqGGEtS7dx6VAby70Efklkk2"
 const printSingleHoliday = (singleHoliday) => {
   const holidayString = `
   <div class="row holiday">
@@ -18,6 +13,7 @@ const printSingleHoliday = (singleHoliday) => {
       <p><strong>Date:</strong> ${singleHoliday.date}</p>
       <p><strong>Location:</strong> ${singleHoliday.location}</p>
       <p><strong>Time:</strong> ${singleHoliday.startTime}</p>
+      <div id="holidays-guests" class="text-left"></div>
       <div class="row card-body">
         <button class="btn btn-success single-holiday-btn" data-holiday-edit-btn=${singleHoliday.id}>Edit Holiday</button>
         <button class="btn btn-danger single-holiday-btn" data-holiday-delete-btn=${singleHoliday.id}>Delete Holiday</button>
@@ -28,14 +24,31 @@ const printSingleHoliday = (singleHoliday) => {
       <img class="img-fluid mb-3 mb-md-0 proj-img" src="${singleHoliday.imageUrl}" style="border: 2px outset black;" alt="">
     </div>
   </div>`;
-  $('#holidays-display').html(holidayString);
+  $('#holidays-info').html(holidayString);
+};
+
+const printHolidayGuests = (friendsArray) => {
+  let domString = '';
+  domString += '<h4 class="holiday-guest-title">Invited Guests</h4>';
+  domString += '<ul class="holiday-guest-names">';
+  friendsArray.forEach((friend) => {
+    domString += `<li>${friend.name}</li>`;
+  });
+  domString += '</ul>';
+  $('#holidays-guests').html(domString);
 };
 
 const getSingleHoliday = (e) => {
   const holidayId = e.target.dataset.holidayBtnId;
-  console.log(holidayId);
+  const uid = authHelpers.getCurrentUid();
+  // console.log(holidayId);
   holidaysData.getSingleHoliday(holidayId).then((singleHoliday) => {
-    printSingleHoliday(singleHoliday);
+    holidayFriendsData.getFriendIdsForHoliday(holidayId).then((friendIdsArray) => {
+      friendsData.getFriendsByArrayOfIds(uid, friendIdsArray).then((friendsArray) => {
+        printSingleHoliday(singleHoliday);
+        printHolidayGuests(friendsArray);
+      });
+    });
   });
 };
 
@@ -54,6 +67,14 @@ const holidaysPage = () => {
   });
 };
 
-$('body').on('click', '.holiday-btn', getSingleHoliday);
+const bindEvents = () => {
+  $('body').on('click', '.holiday-btn', getSingleHoliday);
+};
 
-export default holidaysPage;
+const initializeHolidaysPage = () => {
+  holidaysPage();
+  bindEvents();
+};
+
+
+export default initializeHolidaysPage;
