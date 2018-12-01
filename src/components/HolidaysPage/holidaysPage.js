@@ -4,6 +4,7 @@ import holidaysData from '../../helpers/Data/holidaysData';
 import './holidaysPage.scss';
 import holidayFriendsData from '../../helpers/Data/holidayFriendsData';
 import friendsData from '../../helpers/Data/friendsData';
+import holidayPageModal from './holidayPageModal';
 
 const printSingleHoliday = (singleHoliday, friendsArray) => {
   let holidayString = '';
@@ -26,7 +27,7 @@ const printSingleHoliday = (singleHoliday, friendsArray) => {
       <div class="row card-body">
         <button class="btn btn-success single-holiday-btn" data-holiday-edit-btn=${singleHoliday.id}>Edit Holiday</button>
         <button class="btn btn-danger single-holiday-btn" data-holiday-delete-btn=${singleHoliday.id}>Delete Holiday</button>
-        <button class="btn btn-secondary single-holiday-btn" id="holiday-add-guest-btn">Add Guest</button>
+        <button class="btn btn-secondary single-holiday-btn" data-holiday-add-btn=${singleHoliday.id} data-toggle="modal" data-target="#guest-modal">Add Guest</button>
       </div>
     </div>
     <div class="col-md-7 p-2">
@@ -34,6 +35,7 @@ const printSingleHoliday = (singleHoliday, friendsArray) => {
     </div>
   </div>`;
   $('#holidays-info').html(holidayString);
+  holidayPageModal.displayAddGuestModal(friendsArray, singleHoliday.id);
 };
 
 const getSingleHoliday = (e) => {
@@ -43,7 +45,6 @@ const getSingleHoliday = (e) => {
   holidaysData.getSingleHoliday(holidayId).then((singleHoliday) => {
     holidayFriendsData.getFriendIdsForHoliday(holidayId).then((friendIdsArray) => {
       friendsData.getFriendsByArrayOfIds(uid, friendIdsArray).then((friendsArray) => {
-        console.log(friendsArray);
         printSingleHoliday(singleHoliday, friendsArray);
       });
     });
@@ -67,6 +68,7 @@ const holidaysPage = () => {
 
 const bindEvents = () => {
   $('body').on('click', '.holiday-btn', getSingleHoliday);
+  holidayPageModal.modalEvent();
 };
 
 const initializeHolidaysPage = () => {
