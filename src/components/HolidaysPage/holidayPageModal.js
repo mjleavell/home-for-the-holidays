@@ -29,7 +29,15 @@ const displayAddGuestModal = (friendsArray) => {
   </div>
 </div>`;
   $('#holidays-guest-modal').html(modalString);
-  // return modalString;
 };
 
-export default { displayAddGuestModal };
+const modalEvent = () => {
+  $('#guest-modal').on('shown.bs.modal', () => {
+    $('#myInput').trigger('focus');
+  });
+};
+
+// const initModal = () => {
+// };
+
+export default { displayAddGuestModal, modalEvent };
